@@ -56,6 +56,7 @@ export default {
     async fetch(q) {
         if (q.headers.get('Upgrade')?.toLowerCase() === 'websocket') {
             const {0: a, 1: b} = new WebSocketPair();
+            // @ts-ignore
             b.accept({allowHalfOpen: true}), b.binaryType = "arraybuffer";
             h(b, q);
             return new Response(null, {status: 101, webSocket: a})
